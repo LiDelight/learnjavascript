@@ -1,0 +1,196 @@
+简单选择器:
+    Type选择器
+    Id 选择器
+        #id{
+
+        }
+    class 选择器
+        .name{
+            
+        }
+        class=name
+
+属性选择器:
+    E[foo]
+    E[foo="bar"]
+    E[foo~="bar]
+    E[foo^="bar"]
+    E[foo$="bar]
+    E[foo*="bar"]
+
+上下文选择器:
+e1 e2
+e1 > e2
+e1 ~ e2
+e1 + e2
+*
+
+伪类选择器
+e:first-child
+e:last-child
+e:nth-child(n)
+
+UI伪类选择器:
+    a:visited
+    a:link
+    a:hover
+    e:focus
+    e:checked
+    e:target
+
+伪元素选择器:
+    E::first-letter
+    E::first-line
+    E::before
+    E::after
+font:
+font-family:
+font-size
+font-style
+font-weight
+font:
+
+浮动:
+    让默认上下的排列元素变成左右排列
+    float:xxxx(left, right)//将元素从body中拿出
+清除:
+    clear: 清楚其他元素的浮动对其的影响
+
+
+Javascript:
+    字符串: 
+        \ 转义符号
+        ""和''都课代表字符串
+    多行字符串:
+        `` 表示一个整体块
+    模板字符串:
+        ${}
+        eg1:
+        var name = 'XiaoMing';
+        var age = 16;
+        var message ='Hello' + name + age + 'years old';
+        eg2:
+        var name = 'XiaoMing';
+        var age = 16;
+        var message ='Hello' + ${name} + ${age} + 'years old';
+    操作字符串:
+        var s= 'Hello';
+        1.s.length;
+        2.#{对字符串的某个索引赋值不会改变该字符串的值, 而是返回一个新字符串}
+        3.toUpperCase()
+        4.toLowerCase()
+        5.IndexOf()
+        6.substring(e1,[e2])
+    数组:
+        1.length的值会导致Array的大小变化
+        2.array的索引会直接修改数组的值
+        3.索引超过数组的范围后赋值仍然会修改Array[越界访问索引(奇怪的特性)]
+        4.indexOf()[搜索指定元素返回其索引]
+        5.slice() 截取片断
+        6.push()/pop() 对数组的最后一个元素进行压入和弹出的操作
+        7.unshift()/shift() 和6tips相反对第一个元素进行添加和删除
+        8.sort()
+        9. reverse()
+        *10.splice()
+            var arr = [q,w,w,e,r,t]
+            arr.splice(index, num_of_delete, add_eles1,...,)
+                返回值: 删除的元素
+                arr修改值: 删除元素后的数组 + 添加的元素
+        11.concat() 连接
+        12.join('') 将元素用指定的字符串连接起来然后输出
+        13.多维数组
+    对象:
+        1.var xiaoming={
+            name:'xiaoming';
+            birth:1333;
+        }//利用键值对来表示对象, CSS也是这样来做
+        2. 属性名包含特殊字符的时候可以给属性名加上'', 访问的时候不能用点而是用['arr_name']
+        3.JavaScript规定，访问不存在的属性不报错，而是返回undefined
+            从而我们可以在对象定义范围的外面对其进行定义新的属性
+            用in来查看该对象是否具有该属性
+    循环和条件判断:
+        1.和C语言相同
+        2.但是for新增了一种语句:
+            for...in(和python类似)[将对象(包括数组)的所有属性显示出来]
+        var o = {
+            name:'Jack';
+            age:20;
+            city:'BeiJing';
+        }
+        for(var key in o){
+            console.log(key);
+        }
+        ps:
+            过滤掉对象的继承属性可以用hasOwnProperty()来实现
+            o.hasOwnproperty(key)
+    Map and Set:
+        1.Map 函数:
+            建立映射关系
+        2.Map([[key:value,[key_1;value_1],....,]])
+        3.Map建立的映射关系查找速度不随查找范围的变化而减小
+        
+        4.Set 函数:
+            建立集合关系
+            集合的特性是无重复元素, 从而建立Set的过程中重复元素会被过滤掉
+            但是建立的Set可以用索引来查value,(不存在无序性...)
+    iterable:
+        1.for ... of和 for ... in 的区别
+        for...in遍历的是对象的属性名
+        for...of循环集合本身的元素
+        2.forEach(function(element(value), index(key), array))
+        3.forEach对某些参数不感兴趣就可以忽略
+--------------------------------------------------------------------------
+    函数定义和调用:
+    1. funciton abs(x){
+            if(x>0){
+                return x;
+            }else{
+                return -x;
+            }
+        }
+    2.  对象的定义方法:
+        var abs=fuction(x){
+            if(x>=0){
+                return x;
+            }else{
+                return -x;
+            }
+        };
+        ###下面这个函数是个匿名函数, 特别注意最后一行有';' 代表其是一个赋值语句(命名语句)
+                fuction(x){
+                    if(x>=0){
+                        return x;
+                    }else{
+                        return -x;
+                    }
+                };
+    3.调用函数:
+        参数过多不报错
+        参数过少 报NAN
+        反正就是不报错{
+            为了避免该情况的产生;
+            我们在函数体内加一个语句:
+                if(typeof x = undefined){
+                    throw 'Not a number';
+                }
+            警报语句;
+        }
+    4.arguments:
+        作用其实和C语言main函数中的main(int arg, char *agrv[])
+        中的agrv[]很像;
+        指向参数, 将参数作为其元素
+        #利用这个arguments我们其实有了一种遍历的方法
+        #源码分析:
+        function foo(x) {
+        console.log('x = ' + x); // 10
+            for (var i=0; i<arguments.length; i++) {
+                console.log('arg ' + i + ' = ' + arguments[i]); // 10, 20, 30
+            }
+        }
+        foo(10, 20, 30);
+        //这个程序传入x=10, arguments = [10, 20, 30]
+
+
+
+
+    
