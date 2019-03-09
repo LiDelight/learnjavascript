@@ -25,7 +25,7 @@ e1 ~ e2
 e1 + e2
 *
 
-has
+hass
 
 伪类选择器
 e:first-child
