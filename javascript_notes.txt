@@ -1,3 +1,4 @@
+css 选择器的介绍:
 简单选择器:
     Type选择器
     Id 选择器
@@ -24,8 +25,6 @@ e1 > e2
 e1 ~ e2
 e1 + e2
 *
-
-hasssasa
 
 伪类选择器
 e:first-child
@@ -57,6 +56,9 @@ font:
     float:xxxx(left, right)//将元素从body中拿出
 清除:
     clear: 清楚其他元素的浮动对其的影响
+
+----------------------------------------------------------------------
+
 
 
 Javascript:
@@ -172,7 +174,7 @@ Javascript:
         反正就是不报错{
             为了避免该情况的产生;
             我们在函数体内加一个语句:
-                if(typeof x = undefined){
+                if(typeof x !== 'number'){
                     throw 'Not a number';
                 }
             警报语句;
@@ -191,8 +193,78 @@ Javascript:
         }
         foo(10, 20, 30);
         //这个程序传入x=10, arguments = [10, 20, 30]
+    5.rest:
+        function foo(a, b, ...rest){
+            console.log('a=' + a);
+            console.log('b=' + b);
+            console.log(rest);
+        }
+        #rest参数只能卸载最后, 前面要用...标识, rest时 数组对象
+    6.JavaScript特性:
+        在行末补';'
+        很多时候的分行要注意, 最好加上{}代码块
 
+    
+    变量作用域和解构赋值:
+    1. 外部变量不能访问内部变量:
+    2. 内部变量和外部变量同名的时候, 函数由内向外查找变量名
+    3. 变量提升:
+        ###JavaScript语言有个特性:
+            扫描整个函数体, 将变量名全部提到函数顶部
+            但是只会提升变量的声明, 而不会提升变量的>赋值顺序<
+        eg:
+            function foo() {
+                var x = 'Hello, ' + y;
+                console.log(x);
+                var y = 'Bob';
+            }
+            foo(); 
+        输出:   Hello, undefined 
 
+        为了避免该特性造成的bug, 我们在函数体的顶部自己先声明变量:
+        var
+            x = 1;
+            y = x+1;
+            z,i;
+    4. 全局作用域:
+       ## window时js默认的一个全局变量
+    5.名字空间:
+        为了减少js的命名冲突; 我们在文件中可以把自己的变量全部绑定到一个全局
+        变量中
+    6. 局部变量的一个问题(for)
+        在C++语言中
+        for(int i,i<100,i++){
+
+        }
+        很明显i只是作用子啊这一个小括号内部, 但是在js中for
+        不是一个函数, var i 后 i会继续存在在这一个函数中
+        这个时候需要我们使用####let语句###
+
+        let: 和var一样是声明变量的, 但是其可以只在一个代码块中作用
+    7.常量的定义:
+        和C++差不多
+        const i=1000;
+    8. 解构赋值:
+        8.1
+        python的一个特性之一, 很有用
+        eg:
+            var [x,y,z] = [1,2,3]
+        从而将1,2,3分别赋值给了x,y,z
+
+        8.2
+        从对象中直接取出元素:
+        eg:
+        var person = {
+            name: '小明',
+            age: 20,
+            gender: 'male',
+            passport: 'G-12345678',
+            school: 'No.4 middle school'
+        };
+        var {name, age, passport} = person;
+
+        8.3
+        嵌套的元素也可以直接赋值, 把握好层次关系就好了
 
 
     
